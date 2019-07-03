@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.bookdetail.views;
+package com.android.structure.mvc.screens.bookDetail.views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

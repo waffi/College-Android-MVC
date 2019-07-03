@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.booklist.views;
+package com.android.structure.mvc.screens.bookList.views;
 
 import android.content.Context;
 import android.os.Bundle;

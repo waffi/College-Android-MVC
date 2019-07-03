@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.booklist.adapters;
+package com.android.structure.mvc.screens.bookList.adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.android.structure.mvc.models.book.Book;
-import com.android.structure.mvc.screens.booklist.views.BookListThumbnailViewInterface;
-import com.android.structure.mvc.screens.booklist.views.BookListThumbnailView;
+import com.android.structure.mvc.screens.bookList.views.BookListThumbnailViewInterface;
+import com.android.structure.mvc.screens.bookList.views.BookListThumbnailView;
 
 /**
  * This adapter handles population of a list with instances of {@link BookListThumbnailViewInterface}

@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.bookdetail.controllers;
+package com.android.structure.mvc.screens.bookDetail.controllers;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.widget.Toast;
 
 import com.android.structure.mvc.models.book.BookManager;
 import com.android.structure.mvc.models.book.Book;
-import com.android.structure.mvc.screens.BaseFragment;
-import com.android.structure.mvc.screens.bookdetail.views.BookDetailViewInterface;
-import com.android.structure.mvc.screens.bookdetail.views.BookDetailView;
+import com.android.structure.mvc.screens.base.BaseFragment;
+import com.android.structure.mvc.screens.bookDetail.views.BookDetailViewInterface;
+import com.android.structure.mvc.screens.bookDetail.views.BookDetailView;
 
 import java.util.List;
 

@@ -6,8 +6,8 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.android.structure.mvc.R;
-import com.android.structure.mvc.screens.BaseFragment;
-import com.android.structure.mvc.screens.booklist.controllers.BookListFragment;
+import com.android.structure.mvc.screens.base.BaseFragment;
+import com.android.structure.mvc.screens.bookList.controllers.BookListFragment;
 import com.android.structure.mvc.screens.main.views.MainView;
 
 

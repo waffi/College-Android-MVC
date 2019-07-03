@@ -1,7 +1,7 @@
-package com.android.structure.mvc.screens.booklist.views;
+package com.android.structure.mvc.screens.bookList.views;
 
 import com.android.structure.mvc.models.book.Book;
-import com.android.structure.mvc.screens.BaseViewInterface;
+import com.android.structure.mvc.screens.base.BaseViewInterface;
 
 import java.util.List;
 

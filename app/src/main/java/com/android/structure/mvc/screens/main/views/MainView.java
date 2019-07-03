@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.structure.mvc.R;
-import com.android.structure.mvc.screens.BaseViewInterface;
+import com.android.structure.mvc.screens.base.BaseViewInterface;
 
 /**
  * Very simple MVC view containing just single FrameLayout

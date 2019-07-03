@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.booklist.controllers;
+package com.android.structure.mvc.screens.bookList.controllers;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 
 import com.android.structure.mvc.models.book.BookManager;
 import com.android.structure.mvc.models.book.Book;
-import com.android.structure.mvc.screens.BaseFragment;
-import com.android.structure.mvc.screens.bookdetail.controllers.BookDetailFragment;
-import com.android.structure.mvc.screens.booklist.views.BookListViewInterface;
-import com.android.structure.mvc.screens.booklist.views.BookListView;
+import com.android.structure.mvc.screens.base.BaseFragment;
+import com.android.structure.mvc.screens.bookDetail.controllers.BookDetailFragment;
+import com.android.structure.mvc.screens.bookList.views.BookListViewInterface;
+import com.android.structure.mvc.screens.bookList.views.BookListView;
 
 import java.util.List;
 

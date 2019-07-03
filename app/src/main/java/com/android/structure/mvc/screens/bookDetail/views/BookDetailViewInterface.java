@@ -1,7 +1,7 @@
-package com.android.structure.mvc.screens.bookdetail.views;
+package com.android.structure.mvc.screens.bookDetail.views;
 
 import com.android.structure.mvc.models.book.Book;
-import com.android.structure.mvc.screens.BaseViewInterface;
+import com.android.structure.mvc.screens.base.BaseViewInterface;
 
 /**
  * This interface corresponds to "details" screen of the app, where details of a single SMS

@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.booklist.views;
+package com.android.structure.mvc.screens.bookList.views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import com.android.structure.mvc.R;
 import com.android.structure.mvc.models.book.Book;
-import com.android.structure.mvc.screens.booklist.adapters.BookListAdapter;
+import com.android.structure.mvc.screens.bookList.adapters.BookListAdapter;
 
 import java.util.List;
 

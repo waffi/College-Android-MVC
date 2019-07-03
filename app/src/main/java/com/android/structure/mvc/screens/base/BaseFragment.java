@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens;
+package com.android.structure.mvc.screens.base;
 
 import android.app.Activity;
 import android.app.Fragment;
