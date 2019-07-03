@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.smsdetails.controllers;
+package com.android.structure.mvc.screens.bookdetail.controllers;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.structure.mvc.models.sms.SmsMessagesManager;
-import com.android.structure.mvc.models.sms.SmsMessage;
-import com.android.structure.mvc.screens.common.controllers.BaseFragment;
-import com.android.structure.mvc.screens.smsdetails.views.SmsDetailsViewInterface;
-import com.android.structure.mvc.screens.smsdetails.views.SmsDetailsView;
+import com.android.structure.mvc.models.book.BookManager;
+import com.android.structure.mvc.models.book.Book;
+import com.android.structure.mvc.screens.BaseFragment;
+import com.android.structure.mvc.screens.bookdetail.views.BookDetailViewInterface;
+import com.android.structure.mvc.screens.bookdetail.views.BookDetailView;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ import java.util.List;
 /**
  * This fragment is used to show the details of a SMS message and mark it as read
  */
-public class SmsDetailsFragment extends BaseFragment implements
-        SmsDetailsViewInterface.ShowDetailsViewMvcListener,
-        SmsMessagesManager.SmsMessagesManagerListener {
+public class BookDetailFragment extends BaseFragment implements
+        BookDetailViewInterface.ShowDetailsViewMvcListener,
+        BookManager.SmsMessagesManagerListener {
 
     /**
      * This constant should be used as a key in a Bundle passed to this fragment as an argument
@@ -32,9 +32,9 @@ public class SmsDetailsFragment extends BaseFragment implements
     public static final String ARG_SMS_MESSAGE_ID = "arg_sms_message_id";
 
 
-    private SmsDetailsViewInterface mViewMVC;
+    private BookDetailViewInterface mViewMVC;
 
-    private SmsMessagesManager mSmsMessagesManager;
+    private BookManager mSmsMessagesManager;
 
     private long mSmsMessageId;
 
@@ -43,7 +43,7 @@ public class SmsDetailsFragment extends BaseFragment implements
                              Bundle savedInstanceState) {
 
         // in general, better use dependency injection library (e.g. Dagger 2) for members' init
-        mSmsMessagesManager = new SmsMessagesManager(
+        mSmsMessagesManager = new BookManager(
                 getActivity().getContentResolver(),
                 getMainThreadPoster(),
                 getBackgroundThreadPoster());
@@ -54,12 +54,12 @@ public class SmsDetailsFragment extends BaseFragment implements
         if (args.containsKey(ARG_SMS_MESSAGE_ID)) {
             mSmsMessageId = args.getLong(ARG_SMS_MESSAGE_ID);
         } else {
-            throw new IllegalStateException("SmsDetailsFragment must be started with SMS message ID argument");
+            throw new IllegalStateException("BookDetailFragment must be started with SMS message ID argument");
         }
 
 
         // Instantiate MVC view associated with this fragment
-        mViewMVC = new SmsDetailsView(inflater, container);
+        mViewMVC = new BookDetailView(inflater, container);
         mViewMVC.setListener(this);
 
         /*
@@ -99,8 +99,8 @@ public class SmsDetailsFragment extends BaseFragment implements
     }
 
     @Override
-    public void onSmsMessagesFetched(List<SmsMessage> smsMessages) {
-        for (SmsMessage smsMessage : smsMessages) {
+    public void onSmsMessagesFetched(List<Book> smsMessages) {
+        for (Book smsMessage : smsMessages) {
             if (smsMessage.getId() == mSmsMessageId) {
                 mViewMVC.bindSmsMessage(smsMessage);
                 return;

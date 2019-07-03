@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.common.views;
+package com.android.structure.mvc.screens;
 
 import android.os.Bundle;
 import android.view.View;

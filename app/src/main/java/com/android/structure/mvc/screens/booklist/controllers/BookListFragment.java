@@ -1,42 +1,42 @@
-package com.android.structure.mvc.screens.smsall.controllers;
+package com.android.structure.mvc.screens.booklist.controllers;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.structure.mvc.models.sms.SmsMessagesManager;
-import com.android.structure.mvc.models.sms.SmsMessage;
-import com.android.structure.mvc.screens.common.controllers.BaseFragment;
-import com.android.structure.mvc.screens.smsdetails.controllers.SmsDetailsFragment;
-import com.android.structure.mvc.screens.smsall.views.SmsAllViewInterface;
-import com.android.structure.mvc.screens.smsall.views.SmsAllView;
+import com.android.structure.mvc.models.book.BookManager;
+import com.android.structure.mvc.models.book.Book;
+import com.android.structure.mvc.screens.BaseFragment;
+import com.android.structure.mvc.screens.bookdetail.controllers.BookDetailFragment;
+import com.android.structure.mvc.screens.booklist.views.BookListViewInterface;
+import com.android.structure.mvc.screens.booklist.views.BookListView;
 
 import java.util.List;
 
 /**
  * A Fragment containing a list of SMS messages
  */
-public class SmsAllFragment extends BaseFragment implements
-        SmsAllViewInterface.SmsAllViewMvcListener,
-        SmsMessagesManager.SmsMessagesManagerListener {
+public class BookListFragment extends BaseFragment implements
+        BookListViewInterface.SmsAllViewMvcListener,
+        BookManager.SmsMessagesManagerListener {
 
-    SmsAllViewInterface mViewMVC;
+    BookListViewInterface mViewMVC;
 
-    SmsMessagesManager mSmsMessagesManager;
+    BookManager mSmsMessagesManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // in general, better use dependency injection library (e.g. Dagger 2) for members' init
-        mSmsMessagesManager = new SmsMessagesManager(
+        mSmsMessagesManager = new BookManager(
                 getActivity().getContentResolver(),
                 getMainThreadPoster(),
                 getBackgroundThreadPoster());
 
         // Instantiate MVC view and set the fragment as listener
-        mViewMVC = new SmsAllView(inflater, container);
+        mViewMVC = new BookListView(inflater, container);
         mViewMVC.setListener(this);
 
         // Return the root view of the associated MVC view
@@ -61,14 +61,14 @@ public class SmsAllFragment extends BaseFragment implements
     public void onSmsMessageClicked(long id) {
         // Create a bundle that will pass the ID of the clicked SMS message to the new fragment
         Bundle args = new Bundle(1);
-        args.putLong(SmsDetailsFragment.ARG_SMS_MESSAGE_ID, id);
+        args.putLong(BookDetailFragment.ARG_SMS_MESSAGE_ID, id);
 
         // Replace this fragment with a new one and pass args to it
-        replaceFragment(SmsDetailsFragment.class, true, args);
+        replaceFragment(BookDetailFragment.class, true, args);
     }
 
     @Override
-    public void onSmsMessagesFetched(List<SmsMessage> smsMessages) {
+    public void onSmsMessagesFetched(List<Book> smsMessages) {
         mViewMVC.bindSmsMessages(smsMessages);
     }
 }

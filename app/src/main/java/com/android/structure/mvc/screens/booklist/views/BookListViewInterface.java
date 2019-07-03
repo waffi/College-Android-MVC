@@ -1,14 +1,14 @@
-package com.android.structure.mvc.screens.smsall.views;
+package com.android.structure.mvc.screens.booklist.views;
 
-import com.android.structure.mvc.models.sms.SmsMessage;
-import com.android.structure.mvc.screens.common.views.BaseViewInterface;
+import com.android.structure.mvc.models.book.Book;
+import com.android.structure.mvc.screens.BaseViewInterface;
 
 import java.util.List;
 
 /**
  * This MVC view corresponds to a screen where a list containing all SMS messages is shown
  */
-public interface SmsAllViewInterface extends BaseViewInterface {
+public interface BookListViewInterface extends BaseViewInterface {
 
 
     interface SmsAllViewMvcListener {
@@ -21,9 +21,9 @@ public interface SmsAllViewInterface extends BaseViewInterface {
 
     /**
      * Bind SMS messages data which should be shown by this MVC view
-     * @param smsMessages list of {@link SmsMessage} objects that need to be shown
+     * @param smsMessages list of {@link Book} objects that need to be shown
      */
-    void bindSmsMessages(List<SmsMessage> smsMessages);
+    void bindSmsMessages(List<Book> smsMessages);
 
     /**
      * Set a listener that will be notified by this MVC view

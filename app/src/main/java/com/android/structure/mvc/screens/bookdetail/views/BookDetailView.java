@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.smsdetails.views;
+package com.android.structure.mvc.screens.bookdetail.views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,12 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.structure.mvc.R;
-import com.android.structure.mvc.models.sms.SmsMessage;
+import com.android.structure.mvc.models.book.Book;
 
 /**
- * An implementation of {@link SmsDetailsViewInterface} interface
+ * An implementation of {@link BookDetailViewInterface} interface
  */
-public class SmsDetailsView implements SmsDetailsViewInterface {
+public class BookDetailView implements BookDetailViewInterface {
 
 
     private View mRootView;
@@ -25,7 +25,7 @@ public class SmsDetailsView implements SmsDetailsViewInterface {
     private TextView mTxtBody;
     private Button mBtnMarkAsRead;
 
-    public SmsDetailsView(LayoutInflater inflater, ViewGroup container) {
+    public BookDetailView(LayoutInflater inflater, ViewGroup container) {
         mRootView = inflater.inflate(R.layout.view_sms_details, container, false);
 
         initialize();
@@ -55,7 +55,7 @@ public class SmsDetailsView implements SmsDetailsViewInterface {
 
 
     @Override
-    public void bindSmsMessage(SmsMessage smsMessage) {
+    public void bindSmsMessage(Book smsMessage) {
         mTxtAddress.setText(smsMessage.getAddress());
         mTxtDate.setText(smsMessage.getDate());
         mTxtBody.setText(smsMessage.getBody());

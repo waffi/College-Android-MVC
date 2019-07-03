@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.smsall.views;
+package com.android.structure.mvc.screens.booklist.views;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import com.android.structure.mvc.R;
 import com.android.structure.mvc.common.Utils;
-import com.android.structure.mvc.models.sms.SmsMessage;
+import com.android.structure.mvc.models.book.Book;
 
 /**
  * This MVC view represents a single element in ListView.
  */
-public class SmsThumbnailView implements SmsThumbnailViewInterface {
+public class BookListThumbnailView implements BookListThumbnailViewInterface {
 
     private final Context context;
     View mRootView;
@@ -23,7 +23,7 @@ public class SmsThumbnailView implements SmsThumbnailViewInterface {
     private TextView mTxtDate;
 
 
-    public SmsThumbnailView(Context context, ViewGroup container) {
+    public BookListThumbnailView(Context context, ViewGroup container) {
         this.context = context;
         mRootView = LayoutInflater.from(context)
                 .inflate(R.layout.view_sms_thumbnail, container, false);
@@ -40,7 +40,7 @@ public class SmsThumbnailView implements SmsThumbnailViewInterface {
     }
 
     @Override
-    public void bindSmsMessage(SmsMessage smsMessage) {
+    public void bindSmsMessage(Book smsMessage) {
         mTxtAddress.setText(smsMessage.getAddress());
         mTxtDate.setText(Utils.convertToHumanReadableDate(smsMessage.getDate()));
 

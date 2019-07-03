@@ -1,9 +1,9 @@
-package com.android.structure.mvc.models.sms;
+package com.android.structure.mvc.models.book;
 
 /**
  * Instances of this class are POJOs (Plain Old Java Object) which represent SMS messages.
  */
-public class SmsMessage {
+public class Book {
 
     private long mId;
     private String mAddress;
@@ -11,7 +11,7 @@ public class SmsMessage {
     private String mDate;
     private boolean mUnread;
 
-    public SmsMessage(long id, String address, String body, String date, boolean unread) {
+    public Book(long id, String address, String body, String date, boolean unread) {
         mId = id;
         mAddress = address;
         mBody = body;

@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.smsall.views;
+package com.android.structure.mvc.screens.booklist.views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,32 +8,32 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.structure.mvc.R;
-import com.android.structure.mvc.models.sms.SmsMessage;
-import com.android.structure.mvc.screens.smsall.adapters.SmsAllAdapter;
+import com.android.structure.mvc.models.book.Book;
+import com.android.structure.mvc.screens.booklist.adapters.BookListAdapter;
 
 import java.util.List;
 
 /**
  * This MVC view contains a list view and intercepts click events
  */
-public class SmsAllView implements SmsAllViewInterface {
+public class BookListView implements BookListViewInterface {
 
 
     private View mRootView;
 
     private ListView mListView;
-    private SmsAllAdapter mSmsAllListAdapter;
+    private BookListAdapter mSmsAllListAdapter;
 
     private SmsAllViewMvcListener mListener;
 
-    public SmsAllView(LayoutInflater inflater, ViewGroup container) {
+    public BookListView(LayoutInflater inflater, ViewGroup container) {
         mRootView = inflater.inflate(R.layout.view_home, container, false);
 
         /*
          Note that we are passing null instead of a Cursor - the actual Cursor with the
          results will be passed to this adapter through public "bind" method of this MVC view
           */
-        mSmsAllListAdapter = new SmsAllAdapter(inflater.getContext(), 0);
+        mSmsAllListAdapter = new BookListAdapter(inflater.getContext(), 0);
         mListView = (ListView) mRootView.findViewById(R.id.list_sms_messages);
         mListView.setAdapter(mSmsAllListAdapter);
 
@@ -67,7 +67,7 @@ public class SmsAllView implements SmsAllViewInterface {
     }
 
     @Override
-    public void bindSmsMessages(List<SmsMessage> smsMessages) {
+    public void bindSmsMessages(List<Book> smsMessages) {
         mSmsAllListAdapter.clear();
         mSmsAllListAdapter.addAll(smsMessages);
         mSmsAllListAdapter.notifyDataSetChanged();

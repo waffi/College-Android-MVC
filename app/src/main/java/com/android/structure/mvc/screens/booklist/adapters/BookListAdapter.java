@@ -1,28 +1,28 @@
-package com.android.structure.mvc.screens.smsall.adapters;
+package com.android.structure.mvc.screens.booklist.adapters;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.android.structure.mvc.models.sms.SmsMessage;
-import com.android.structure.mvc.screens.smsall.views.SmsThumbnailViewInterface;
-import com.android.structure.mvc.screens.smsall.views.SmsThumbnailView;
+import com.android.structure.mvc.models.book.Book;
+import com.android.structure.mvc.screens.booklist.views.BookListThumbnailViewInterface;
+import com.android.structure.mvc.screens.booklist.views.BookListThumbnailView;
 
 /**
- * This adapter handles population of a list with instances of {@link SmsThumbnailViewInterface}
+ * This adapter handles population of a list with instances of {@link BookListThumbnailViewInterface}
  */
-public class SmsAllAdapter extends ArrayAdapter<SmsMessage> {
+public class BookListAdapter extends ArrayAdapter<Book> {
 
-    public SmsAllAdapter(Context context, int resource) {
+    public BookListAdapter(Context context, int resource) {
         super(context, resource);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        SmsThumbnailViewInterface smsThumbnailViewMvc;
+        BookListThumbnailViewInterface smsThumbnailViewMvc;
         if (convertView == null) {
-            smsThumbnailViewMvc =  new SmsThumbnailView(getContext(), parent);
+            smsThumbnailViewMvc =  new BookListThumbnailView(getContext(), parent);
             /*
              Since this kind of adapters store just references to Android Views, we need to "attach"
              the entire MVC view as a tag to its root view in order to be able to retrieve it later.
@@ -32,7 +32,7 @@ public class SmsAllAdapter extends ArrayAdapter<SmsMessage> {
             */
             smsThumbnailViewMvc.getRootView().setTag(smsThumbnailViewMvc);
         } else {
-            smsThumbnailViewMvc = ((SmsThumbnailViewInterface) convertView.getTag());
+            smsThumbnailViewMvc = ((BookListThumbnailViewInterface) convertView.getTag());
         }
 
         smsThumbnailViewMvc.bindSmsMessage(getItem(position));

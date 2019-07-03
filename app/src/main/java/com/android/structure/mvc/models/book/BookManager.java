@@ -1,4 +1,4 @@
-package com.android.structure.mvc.models.sms;
+package com.android.structure.mvc.models.book;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * This class encapsulates the logic related to SMS messages, including interactions with MVC model.
  */
-public class SmsMessagesManager extends BaseObservableManager<SmsMessagesManager.SmsMessagesManagerListener> {
+public class BookManager extends BaseObservableManager<BookManager.SmsMessagesManagerListener> {
 
     /*
      * MVC model of the app is a database of SMS messages stored on the device. The model is accessed
@@ -39,7 +39,7 @@ public class SmsMessagesManager extends BaseObservableManager<SmsMessagesManager
 
     /**
      * Classes implementing this interface can be registered as callbacks with
-     * {@link SmsMessagesManager}
+     * {@link BookManager}
      */
     public interface SmsMessagesManagerListener {
         /**
@@ -47,7 +47,7 @@ public class SmsMessagesManager extends BaseObservableManager<SmsMessagesManager
          * completes.
          * @param smsMessages a list of fetched SMS messages; will never be null
          */
-        void onSmsMessagesFetched(List<SmsMessage> smsMessages);
+        void onSmsMessagesFetched(List<Book> smsMessages);
     }
 
 
@@ -55,9 +55,9 @@ public class SmsMessagesManager extends BaseObservableManager<SmsMessagesManager
     private final MainThreadPoster mMainThreadPoster;
     private final BackgroundThreadPoster mBackgroundThreadPoster;
 
-    public SmsMessagesManager(ContentResolver contentResolver,
-                              MainThreadPoster mainThreadPoster,
-                              BackgroundThreadPoster backgroundThreadPoster) {
+    public BookManager(ContentResolver contentResolver,
+                       MainThreadPoster mainThreadPoster,
+                       BackgroundThreadPoster backgroundThreadPoster) {
         mContentResolver = contentResolver;
         mMainThreadPoster = mainThreadPoster;
         mBackgroundThreadPoster = backgroundThreadPoster;
@@ -82,7 +82,7 @@ public class SmsMessagesManager extends BaseObservableManager<SmsMessagesManager
                             DEFAULT_SORT_ORDER
                     );
 
-                    List<SmsMessage> result = extractSmsMessagesFromCursor(cursor);
+                    List<Book> result = extractSmsMessagesFromCursor(cursor);
                     notifySmsMessagesFetched(result);
                 } finally {
                     if (cursor != null) cursor.close();
@@ -116,18 +116,18 @@ public class SmsMessagesManager extends BaseObservableManager<SmsMessagesManager
                     DEFAULT_SORT_ORDER
             );
 
-            List<SmsMessage> result = extractSmsMessagesFromCursor(cursor);
+            List<Book> result = extractSmsMessagesFromCursor(cursor);
             notifySmsMessagesFetched(result);
         } finally {
             if (cursor != null) cursor.close();
         }
     }
 
-    private List<SmsMessage> extractSmsMessagesFromCursor(Cursor cursor) {
+    private List<Book> extractSmsMessagesFromCursor(Cursor cursor) {
         if (cursor != null && cursor.moveToFirst()) {
-            List<SmsMessage> result = new ArrayList<>(cursor.getCount());
+            List<Book> result = new ArrayList<>(cursor.getCount());
             do {
-                result.add(new SmsMessage(
+                result.add(new Book(
                         cursor.getLong(cursor.getColumnIndexOrThrow("_id")),
                         cursor.getString(cursor.getColumnIndexOrThrow("address")),
                         cursor.getString(cursor.getColumnIndexOrThrow("body")),
@@ -165,7 +165,7 @@ public class SmsMessagesManager extends BaseObservableManager<SmsMessagesManager
 
     }
 
-    private void notifySmsMessagesFetched(final List<SmsMessage> smsMessages) {
+    private void notifySmsMessagesFetched(final List<Book> smsMessages) {
         mMainThreadPoster.post(new Runnable() {
             @Override
             public void run() {

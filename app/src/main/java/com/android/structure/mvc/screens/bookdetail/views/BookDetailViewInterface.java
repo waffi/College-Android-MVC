@@ -1,13 +1,13 @@
-package com.android.structure.mvc.screens.smsdetails.views;
+package com.android.structure.mvc.screens.bookdetail.views;
 
-import com.android.structure.mvc.models.sms.SmsMessage;
-import com.android.structure.mvc.screens.common.views.BaseViewInterface;
+import com.android.structure.mvc.models.book.Book;
+import com.android.structure.mvc.screens.BaseViewInterface;
 
 /**
  * This interface corresponds to "details" screen of the app, where details of a single SMS
  * message should be displayed
  */
-public interface SmsDetailsViewInterface extends BaseViewInterface {
+public interface BookDetailViewInterface extends BaseViewInterface {
 
 
     interface ShowDetailsViewMvcListener {
@@ -26,7 +26,7 @@ public interface SmsDetailsViewInterface extends BaseViewInterface {
      * Show details of a particular SMS message
      * @param smsMessage a message to show
      */
-    void bindSmsMessage(SmsMessage smsMessage);
+    void bindSmsMessage(Book smsMessage);
 
 
     /**

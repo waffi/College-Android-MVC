@@ -1,4 +1,4 @@
-package com.android.structure.mvc.screens.common.controllers;
+package com.android.structure.mvc.screens.main.controllers;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -6,8 +6,9 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.android.structure.mvc.R;
-import com.android.structure.mvc.screens.smsall.controllers.SmsAllFragment;
-import com.android.structure.mvc.screens.common.views.MainView;
+import com.android.structure.mvc.screens.BaseFragment;
+import com.android.structure.mvc.screens.booklist.controllers.BookListFragment;
+import com.android.structure.mvc.screens.main.views.MainView;
 
 
 public class MainActivity extends Activity implements BaseFragment.AbstractFragmentCallback {
@@ -35,7 +36,7 @@ public class MainActivity extends Activity implements BaseFragment.AbstractFragm
 
         // Show the default fragment if the application is not restored
         if (savedInstanceState == null) {
-            replaceFragment(SmsAllFragment.class, false, null);
+            replaceFragment(BookListFragment.class, false, null);
         }
     }
 
