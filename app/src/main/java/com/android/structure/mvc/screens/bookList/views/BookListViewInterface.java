@@ -6,29 +6,29 @@ import com.android.structure.mvc.screens.base.BaseViewInterface;
 import java.util.List;
 
 /**
- * This MVC view corresponds to a screen where a list containing all SMS messages is shown
+ * This MVC view corresponds to a screen where a list containing all Books is shown
  */
 public interface BookListViewInterface extends BaseViewInterface {
 
 
-    interface SmsAllViewMvcListener {
+    interface BookAllViewMvcListener {
         /**
-         * This callback will be invoked when the user clicks on one of the shown SMS messages
-         * @param id clicked message's ID
+         * This callback will be invoked when the user clicks on one of the shown Books
+         * @param id clicked book's ID
          */
-        void onSmsMessageClicked(long id);
+        void onBookClicked(long id);
     }
 
     /**
-     * Bind SMS messages data which should be shown by this MVC view
-     * @param smsMessages list of {@link Book} objects that need to be shown
+     * Bind Books data which should be shown by this MVC view
+     * @param books list of {@link Book} objects that need to be shown
      */
-    void bindSmsMessages(List<Book> smsMessages);
+    void bindBooks(List<Book> books);
 
     /**
      * Set a listener that will be notified by this MVC view
      * @param listener listener that should be notified; null to clear
      */
-    void setListener(SmsAllViewMvcListener listener);
+    void setListener(BookAllViewMvcListener listener);
 
 }

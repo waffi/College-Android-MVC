@@ -6,21 +6,21 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
-import com.android.structure.mvc.common.BackgroundThreadPoster;
-import com.android.structure.mvc.common.BaseObservableManager;
-import com.android.structure.mvc.common.MainThreadPoster;
+import com.android.structure.mvc.commons.BackgroundThreadPoster;
+import com.android.structure.mvc.commons.BaseObservableManager;
+import com.android.structure.mvc.commons.MainThreadPoster;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class encapsulates the logic related to SMS messages, including interactions with MVC model.
+ * This class encapsulates the logic related to Books, including interactions with MVC model.
  */
-public class BookManager extends BaseObservableManager<BookManager.SmsMessagesManagerListener> {
+public class BookManager extends BaseObservableManager<BookManager.BookManagerListener> {
 
     /*
-     * MVC model of the app is a database of SMS messages stored on the device. The model is accessed
-     * via a non-standard ContentProvider having CONTENT_URI "content://sms/inbox".
+     * MVC model of the app is a database of Books stored on the device. The model is accessed
+     * via a non-standard ContentProvider having CONTENT_URI "content://book/inbox".
      */
     private static final String CONTENT_URI = "content://sms/inbox";
 
@@ -41,13 +41,13 @@ public class BookManager extends BaseObservableManager<BookManager.SmsMessagesMa
      * Classes implementing this interface can be registered as callbacks with
      * {@link BookManager}
      */
-    public interface SmsMessagesManagerListener {
+    public interface BookManagerListener {
         /**
-         * This method will be called on UI thread when fetching of requested SMS messages
+         * This method will be called on UI thread when fetching of requested Books
          * completes.
-         * @param smsMessages a list of fetched SMS messages; will never be null
+         * @param books a list of fetched Books; will never be null
          */
-        void onSmsMessagesFetched(List<Book> smsMessages);
+        void onBooksFetched(List<Book> books);
     }
 
 
@@ -64,11 +64,11 @@ public class BookManager extends BaseObservableManager<BookManager.SmsMessagesMa
     }
 
     /**
-     * Fetch an SMS message by its ID. Fetch will be done on background thread and registered
+     * Fetch an Book by its ID. Fetch will be done on background thread and registered
      * listeners will be notified of result on UI thread.
-     * @param id ID of message to fetch
+     * @param id ID of book to fetch
      */
-    public void fetchSmsMessageById(final long id) {
+    public void fetchBookById(final long id) {
         mBackgroundThreadPoster.post(new Runnable() {
             @Override
             public void run() {
@@ -82,8 +82,8 @@ public class BookManager extends BaseObservableManager<BookManager.SmsMessagesMa
                             DEFAULT_SORT_ORDER
                     );
 
-                    List<Book> result = extractSmsMessagesFromCursor(cursor);
-                    notifySmsMessagesFetched(result);
+                    List<Book> result = extractBooksFromCursor(cursor);
+                    notifyBooksFetched(result);
                 } finally {
                     if (cursor != null) cursor.close();
                 }
@@ -93,19 +93,19 @@ public class BookManager extends BaseObservableManager<BookManager.SmsMessagesMa
 
 
     /**
-     * Fetch all SMS messages. Fetch will be done on background thread and registered
+     * Fetch all Books. Fetch will be done on background thread and registered
      * listeners will be notified of result on UI thread.
      */
-    public void fetchAllSmsMessages() {
+    public void fetchAllBooks() {
         mBackgroundThreadPoster.post(new Runnable() {
             @Override
             public void run() {
-                fetchAllSmsMessagesSync();
+                fetchAllBooksSync();
             }
         });
     }
 
-    private void fetchAllSmsMessagesSync() {
+    private void fetchAllBooksSync() {
         Cursor cursor = null;
         try {
             cursor = mContentResolver.query(
@@ -116,14 +116,14 @@ public class BookManager extends BaseObservableManager<BookManager.SmsMessagesMa
                     DEFAULT_SORT_ORDER
             );
 
-            List<Book> result = extractSmsMessagesFromCursor(cursor);
-            notifySmsMessagesFetched(result);
+            List<Book> result = extractBooksFromCursor(cursor);
+            notifyBooksFetched(result);
         } finally {
             if (cursor != null) cursor.close();
         }
     }
 
-    private List<Book> extractSmsMessagesFromCursor(Cursor cursor) {
+    private List<Book> extractBooksFromCursor(Cursor cursor) {
         if (cursor != null && cursor.moveToFirst()) {
             List<Book> result = new ArrayList<>(cursor.getCount());
             do {
@@ -141,10 +141,10 @@ public class BookManager extends BaseObservableManager<BookManager.SmsMessagesMa
     }
 
     /**
-     * Mark specific SMS message as read.
-     * @param id ID of message to be marked as read.
+     * Mark specific Book as read.
+     * @param id ID of book to be marked as read.
      */
-    public void markMessageAsRead(final long id) {
+    public void markBookAsRead(final long id) {
         mBackgroundThreadPoster.post(new Runnable() {
             @Override
             public void run() {
@@ -158,19 +158,19 @@ public class BookManager extends BaseObservableManager<BookManager.SmsMessagesMa
                         null,
                         null);
 
-                // re-fetch all messages and notify listeners
-                fetchAllSmsMessagesSync();
+                // re-fetch all books and notify listeners
+                fetchAllBooksSync();
             }
         });
 
     }
 
-    private void notifySmsMessagesFetched(final List<Book> smsMessages) {
+    private void notifyBooksFetched(final List<Book> books) {
         mMainThreadPoster.post(new Runnable() {
             @Override
             public void run() {
-                for (SmsMessagesManagerListener listener : getListeners()) {
-                    listener.onSmsMessagesFetched(smsMessages);
+                for (BookManagerListener listener : getListeners()) {
+                    listener.onBooksFetched(books);
                 }
             }
         });

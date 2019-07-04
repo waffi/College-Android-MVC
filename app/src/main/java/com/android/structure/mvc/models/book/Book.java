@@ -1,7 +1,7 @@
 package com.android.structure.mvc.models.book;
 
 /**
- * Instances of this class are POJOs (Plain Old Java Object) which represent SMS messages.
+ * Instances of this class are POJOs (Plain Old Java Object) which represent Books.
  */
 public class Book {
 

@@ -26,7 +26,7 @@ public class BookDetailView implements BookDetailViewInterface {
     private Button mBtnMarkAsRead;
 
     public BookDetailView(LayoutInflater inflater, ViewGroup container) {
-        mRootView = inflater.inflate(R.layout.view_sms_details, container, false);
+        mRootView = inflater.inflate(R.layout.view_book_detail, container, false);
 
         initialize();
 
@@ -42,9 +42,9 @@ public class BookDetailView implements BookDetailViewInterface {
 
 
     private void initialize() {
-        mTxtAddress = (TextView) mRootView.findViewById(R.id.txt_sms_address);
-        mTxtDate = (TextView) mRootView.findViewById(R.id.txt_sms_date);
-        mTxtBody = (TextView) mRootView.findViewById(R.id.txt_sms_body);
+        mTxtAddress = (TextView) mRootView.findViewById(R.id.txt_book_address);
+        mTxtDate = (TextView) mRootView.findViewById(R.id.txt_book_date);
+        mTxtBody = (TextView) mRootView.findViewById(R.id.txt_book_body);
         mBtnMarkAsRead = (Button) mRootView.findViewById(R.id.btn_mark_as_read);
     }
 
@@ -55,17 +55,17 @@ public class BookDetailView implements BookDetailViewInterface {
 
 
     @Override
-    public void bindSmsMessage(Book smsMessage) {
-        mTxtAddress.setText(smsMessage.getAddress());
-        mTxtDate.setText(smsMessage.getDate());
-        mTxtBody.setText(smsMessage.getBody());
+    public void bindBook(Book book) {
+        mTxtAddress.setText(book.getAddress());
+        mTxtDate.setText(book.getDate());
+        mTxtBody.setText(book.getBody());
 
 
-        mRootView.setBackgroundColor(smsMessage.isUnread() ?
+        mRootView.setBackgroundColor(book.isUnread() ?
                 mRootView.getResources().getColor(android.R.color.holo_green_light) :
                 mRootView.getResources().getColor(android.R.color.white));
 
-        mBtnMarkAsRead.setVisibility(smsMessage.isUnread() && mMarkAsReadSupported ?
+        mBtnMarkAsRead.setVisibility(book.isUnread() && mMarkAsReadSupported ?
                 View.VISIBLE : View.GONE);
 
     }

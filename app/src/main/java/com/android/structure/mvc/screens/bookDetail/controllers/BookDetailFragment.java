@@ -18,43 +18,43 @@ import java.util.List;
 
 
 /**
- * This fragment is used to show the details of a SMS message and mark it as read
+ * This fragment is used to show the details of a Book and mark it as read
  */
 public class BookDetailFragment extends BaseFragment implements
         BookDetailViewInterface.ShowDetailsViewMvcListener,
-        BookManager.SmsMessagesManagerListener {
+        BookManager.BookManagerListener {
 
     /**
      * This constant should be used as a key in a Bundle passed to this fragment as an argument
-     * at creation time. This key should correspond to the ID of the particular SMS message
+     * at creation time. This key should correspond to the ID of the particular Book
      * which details will be shown in this fragment
      */
-    public static final String ARG_SMS_MESSAGE_ID = "arg_sms_message_id";
+    public static final String ARG_SMS_MESSAGE_ID = "arg_book_id";
 
 
     private BookDetailViewInterface mViewMVC;
 
-    private BookManager mSmsMessagesManager;
+    private BookManager mBookManager;
 
-    private long mSmsMessageId;
+    private long mBookId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // in general, better use dependency injection library (e.g. Dagger 2) for members' init
-        mSmsMessagesManager = new BookManager(
+        mBookManager = new BookManager(
                 getActivity().getContentResolver(),
                 getMainThreadPoster(),
                 getBackgroundThreadPoster());
 
-        // Get the argument of this fragment and look for the ID of the SMS message which should
+        // Get the argument of this fragment and look for the ID of the Book which should
         // be shown
         Bundle args = getArguments();
         if (args.containsKey(ARG_SMS_MESSAGE_ID)) {
-            mSmsMessageId = args.getLong(ARG_SMS_MESSAGE_ID);
+            mBookId = args.getLong(ARG_SMS_MESSAGE_ID);
         } else {
-            throw new IllegalStateException("BookDetailFragment must be started with SMS message ID argument");
+            throw new IllegalStateException("BookDetailFragment must be started with Book ID argument");
         }
 
 
@@ -68,8 +68,8 @@ public class BookDetailFragment extends BaseFragment implements
         versions "mark as read" button is only relevant if this app is the default SMS app.
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            String defaultSmsPackage = Telephony.Sms.getDefaultSmsPackage(getActivity());
-            if (!getActivity().getPackageName().equals(defaultSmsPackage)) {
+            String defaultBookPackage = Telephony.Sms.getDefaultSmsPackage(getActivity());
+            if (!getActivity().getPackageName().equals(defaultBookPackage)) {
                 mViewMVC.markAsReadNotSupported();
             }
         }
@@ -83,30 +83,30 @@ public class BookDetailFragment extends BaseFragment implements
     @Override
     public void onStart() {
         super.onStart();
-        mSmsMessagesManager.registerListener(this);
-        mSmsMessagesManager.fetchSmsMessageById(mSmsMessageId);
+        mBookManager.registerListener(this);
+        mBookManager.fetchBookById(mBookId);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mSmsMessagesManager.unregisterListener(this);
+        mBookManager.unregisterListener(this);
     }
 
     @Override
     public void onMarkAsReadClick() {
-        mSmsMessagesManager.markMessageAsRead(mSmsMessageId);
+        mBookManager.markBookAsRead(mBookId);
     }
 
     @Override
-    public void onSmsMessagesFetched(List<Book> smsMessages) {
-        for (Book smsMessage : smsMessages) {
-            if (smsMessage.getId() == mSmsMessageId) {
-                mViewMVC.bindSmsMessage(smsMessage);
+    public void onBooksFetched(List<Book> books) {
+        for (Book book : books) {
+            if (book.getId() == mBookId) {
+                mViewMVC.bindBook(book);
                 return;
             }
         }
-        Toast.makeText(getActivity(), "Couldn't fetch the SMS message of interest!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Couldn't fetch the Book of interest!", Toast.LENGTH_LONG).show();
     }
 
 }

@@ -5,7 +5,7 @@ import com.android.structure.mvc.screens.base.BaseViewInterface;
 
 /**
  * This interface corresponds to "details" screen of the app, where details of a single SMS
- * message should be displayed
+ * book should be displayed
  */
 public interface BookDetailViewInterface extends BaseViewInterface {
 
@@ -23,10 +23,10 @@ public interface BookDetailViewInterface extends BaseViewInterface {
     void markAsReadNotSupported();
 
     /**
-     * Show details of a particular SMS message
-     * @param smsMessage a message to show
+     * Show details of a particular Book
+     * @param book a book to show
      */
-    void bindSmsMessage(Book smsMessage);
+    void bindBook(Book book);
 
 
     /**

@@ -1,4 +1,4 @@
-package com.android.structure.mvc.common;
+package com.android.structure.mvc.commons;
 
 import java.util.Collections;
 import java.util.Set;

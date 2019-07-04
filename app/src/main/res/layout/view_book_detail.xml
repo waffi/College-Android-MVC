@@ -8,10 +8,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="@string/txt_sms_address_heading"/>
+        android:text="@string/txt_book_address_heading"/>
 
     <TextView
-        android:id="@+id/txt_sms_address"
+        android:id="@+id/txt_book_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -24,10 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="@string/txt_sms_date_heading"/>
+        android:text="@string/txt_book_date_heading"/>
 
     <TextView
-        android:id="@+id/txt_sms_date"
+        android:id="@+id/txt_book_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -36,7 +36,7 @@
         android:layout_height="@dimen/space_height" />
 
     <TextView
-        android:id="@+id/txt_sms_body"
+        android:id="@+id/txt_book_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

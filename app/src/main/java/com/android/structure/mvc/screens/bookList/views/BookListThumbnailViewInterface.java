@@ -10,8 +10,8 @@ import com.android.structure.mvc.screens.base.BaseViewInterface;
 public interface BookListThumbnailViewInterface extends BaseViewInterface {
 
     /**
-     * Show thumbnail of a particular SMS message
-     * @param smsMessage the message to show
+     * Show thumbnail of a particular Book
+     * @param book the book to show
      */
-    void bindSmsMessage(Book smsMessage);
+    void bindBook(Book book);
 }

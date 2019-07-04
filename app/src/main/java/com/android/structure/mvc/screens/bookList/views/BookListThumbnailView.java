@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.structure.mvc.R;
-import com.android.structure.mvc.common.Utils;
+import com.android.structure.mvc.commons.Utils;
 import com.android.structure.mvc.models.book.Book;
 
 /**
@@ -26,7 +26,7 @@ public class BookListThumbnailView implements BookListThumbnailViewInterface {
     public BookListThumbnailView(Context context, ViewGroup container) {
         this.context = context;
         mRootView = LayoutInflater.from(context)
-                .inflate(R.layout.view_sms_thumbnail, container, false);
+                .inflate(R.layout.view_book_thumbnail, container, false);
 
         initialize();
     }
@@ -35,17 +35,17 @@ public class BookListThumbnailView implements BookListThumbnailViewInterface {
      * This method initializes member fields of this object
      */
     private void initialize() {
-        mTxtAddress = (TextView) mRootView.findViewById(R.id.txt_sms_address);
-        mTxtDate = (TextView) mRootView.findViewById(R.id.txt_sms_date);
+        mTxtAddress = (TextView) mRootView.findViewById(R.id.txt_book_address);
+        mTxtDate = (TextView) mRootView.findViewById(R.id.txt_book_date);
     }
 
     @Override
-    public void bindSmsMessage(Book smsMessage) {
-        mTxtAddress.setText(smsMessage.getAddress());
-        mTxtDate.setText(Utils.convertToHumanReadableDate(smsMessage.getDate()));
+    public void bindBook(Book book) {
+        mTxtAddress.setText(book.getAddress());
+        mTxtDate.setText(Utils.convertToHumanReadableDate(book.getDate()));
 
-        // Change the background depending on whether the message has already been read
-        if (smsMessage.isUnread()) {
+        // Change the background depending on whether the book has already been read
+        if (book.isUnread()) {
             mRootView.setBackgroundColor(
                     context.getResources().getColor(android.R.color.holo_green_light));
         } else {

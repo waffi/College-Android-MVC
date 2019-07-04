@@ -5,8 +5,8 @@ import android.app.Fragment;
 import android.os.Bundle;
 
 import com.android.structure.mvc.MyApplication;
-import com.android.structure.mvc.common.BackgroundThreadPoster;
-import com.android.structure.mvc.common.MainThreadPoster;
+import com.android.structure.mvc.commons.BackgroundThreadPoster;
+import com.android.structure.mvc.commons.MainThreadPoster;
 
 /**
  * This abstract class contains convenience logic which is common to all fragments in the app.

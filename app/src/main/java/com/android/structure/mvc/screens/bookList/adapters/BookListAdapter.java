@@ -20,9 +20,9 @@ public class BookListAdapter extends ArrayAdapter<Book> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        BookListThumbnailViewInterface smsThumbnailViewMvc;
+        BookListThumbnailViewInterface bookThumbnailViewMvc;
         if (convertView == null) {
-            smsThumbnailViewMvc =  new BookListThumbnailView(getContext(), parent);
+            bookThumbnailViewMvc =  new BookListThumbnailView(getContext(), parent);
             /*
              Since this kind of adapters store just references to Android Views, we need to "attach"
              the entire MVC view as a tag to its root view in order to be able to retrieve it later.
@@ -30,13 +30,13 @@ public class BookListAdapter extends ArrayAdapter<Book> {
              This is just a workaround though, the better option would be to create our own adapter
              for MVC views...
             */
-            smsThumbnailViewMvc.getRootView().setTag(smsThumbnailViewMvc);
+            bookThumbnailViewMvc.getRootView().setTag(bookThumbnailViewMvc);
         } else {
-            smsThumbnailViewMvc = ((BookListThumbnailViewInterface) convertView.getTag());
+            bookThumbnailViewMvc = ((BookListThumbnailViewInterface) convertView.getTag());
         }
 
-        smsThumbnailViewMvc.bindSmsMessage(getItem(position));
-        return smsThumbnailViewMvc.getRootView();
+        bookThumbnailViewMvc.bindBook(getItem(position));
+        return bookThumbnailViewMvc.getRootView();
     }
 
 }

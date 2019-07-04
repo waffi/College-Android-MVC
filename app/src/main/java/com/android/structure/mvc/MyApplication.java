@@ -1,7 +1,7 @@
 package com.android.structure.mvc;
 
-import com.android.structure.mvc.common.BackgroundThreadPoster;
-import com.android.structure.mvc.common.MainThreadPoster;
+import com.android.structure.mvc.commons.BackgroundThreadPoster;
+import com.android.structure.mvc.commons.MainThreadPoster;
 
 /**
  * Our custom {@link android.app.Application}

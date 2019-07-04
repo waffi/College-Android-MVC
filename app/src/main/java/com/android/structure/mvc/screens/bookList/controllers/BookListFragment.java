@@ -15,22 +15,22 @@ import com.android.structure.mvc.screens.bookList.views.BookListView;
 import java.util.List;
 
 /**
- * A Fragment containing a list of SMS messages
+ * A Fragment containing a list of Books
  */
 public class BookListFragment extends BaseFragment implements
-        BookListViewInterface.SmsAllViewMvcListener,
-        BookManager.SmsMessagesManagerListener {
+        BookListViewInterface.BookAllViewMvcListener,
+        BookManager.BookManagerListener {
 
     BookListViewInterface mViewMVC;
 
-    BookManager mSmsMessagesManager;
+    BookManager mBookManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // in general, better use dependency injection library (e.g. Dagger 2) for members' init
-        mSmsMessagesManager = new BookManager(
+        mBookManager = new BookManager(
                 getActivity().getContentResolver(),
                 getMainThreadPoster(),
                 getBackgroundThreadPoster());
@@ -47,19 +47,19 @@ public class BookListFragment extends BaseFragment implements
     @Override
     public void onStart() {
         super.onStart();
-        mSmsMessagesManager.registerListener(this);
-        mSmsMessagesManager.fetchAllSmsMessages();
+        mBookManager.registerListener(this);
+        mBookManager.fetchAllBooks();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mSmsMessagesManager.unregisterListener(this);
+        mBookManager.unregisterListener(this);
     }
 
     @Override
-    public void onSmsMessageClicked(long id) {
-        // Create a bundle that will pass the ID of the clicked SMS message to the new fragment
+    public void onBookClicked(long id) {
+        // Create a bundle that will pass the ID of the clicked Book to the new fragment
         Bundle args = new Bundle(1);
         args.putLong(BookDetailFragment.ARG_SMS_MESSAGE_ID, id);
 
@@ -68,7 +68,7 @@ public class BookListFragment extends BaseFragment implements
     }
 
     @Override
-    public void onSmsMessagesFetched(List<Book> smsMessages) {
-        mViewMVC.bindSmsMessages(smsMessages);
+    public void onBooksFetched(List<Book> books) {
+        mViewMVC.bindBooks(books);
     }
 }

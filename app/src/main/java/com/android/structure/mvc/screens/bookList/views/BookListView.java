@@ -22,9 +22,9 @@ public class BookListView implements BookListViewInterface {
     private View mRootView;
 
     private ListView mListView;
-    private BookListAdapter mSmsAllListAdapter;
+    private BookListAdapter mBookAllListAdapter;
 
-    private SmsAllViewMvcListener mListener;
+    private BookAllViewMvcListener mListener;
 
     public BookListView(LayoutInflater inflater, ViewGroup container) {
         mRootView = inflater.inflate(R.layout.view_home, container, false);
@@ -33,9 +33,9 @@ public class BookListView implements BookListViewInterface {
          Note that we are passing null instead of a Cursor - the actual Cursor with the
          results will be passed to this adapter through public "bind" method of this MVC view
           */
-        mSmsAllListAdapter = new BookListAdapter(inflater.getContext(), 0);
-        mListView = (ListView) mRootView.findViewById(R.id.list_sms_messages);
-        mListView.setAdapter(mSmsAllListAdapter);
+        mBookAllListAdapter = new BookListAdapter(inflater.getContext(), 0);
+        mListView = (ListView) mRootView.findViewById(R.id.list_books);
+        mListView.setAdapter(mBookAllListAdapter);
 
 
         // Register a listener for ListView's items
@@ -44,7 +44,7 @@ public class BookListView implements BookListViewInterface {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 if (mListener != null) {
-                    mListener.onSmsMessageClicked(mSmsAllListAdapter.getItem(position).getId());
+                    mListener.onBookClicked(mBookAllListAdapter.getItem(position).getId());
                 }
             }
 
@@ -52,7 +52,7 @@ public class BookListView implements BookListViewInterface {
     }
 
     @Override
-    public void setListener(SmsAllViewMvcListener listener) {
+    public void setListener(BookAllViewMvcListener listener) {
         mListener = listener;
     }
 
@@ -67,9 +67,9 @@ public class BookListView implements BookListViewInterface {
     }
 
     @Override
-    public void bindSmsMessages(List<Book> smsMessages) {
-        mSmsAllListAdapter.clear();
-        mSmsAllListAdapter.addAll(smsMessages);
-        mSmsAllListAdapter.notifyDataSetChanged();
+    public void bindBooks(List<Book> books) {
+        mBookAllListAdapter.clear();
+        mBookAllListAdapter.addAll(books);
+        mBookAllListAdapter.notifyDataSetChanged();
     }
 }
