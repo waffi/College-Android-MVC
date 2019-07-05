@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.android.structure.mvc.utils.asyncTask.DataCallback;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class BookListActivity extends Activity implements BookListView.BookListViewListener{
+public class BookListActivity extends AppCompatActivity implements BookListView.BookListViewListener{
 
     private BookListView mViewMVC;
 

@@ -3,12 +3,13 @@ package com.android.structure.mvc.screens.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import com.android.structure.mvc.R;
 import com.android.structure.mvc.screens.bookList.BookListActivity;
 
-public class MainActivity extends Activity implements MainView.MainViewListener{
+public class MainActivity extends AppCompatActivity implements MainView.MainViewListener{
 
     MainView mViewMVC;
 
