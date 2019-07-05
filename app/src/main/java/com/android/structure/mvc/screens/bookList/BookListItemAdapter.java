@@ -16,6 +16,8 @@ class BookListItemAdapter extends RecyclerView.Adapter<BookListItemView> impleme
     private Context context;
     private List<Book> itemList;
 
+    private BookListItemView mViewMVC;
+
     BookListItemAdapter(Context context) {
         this.context = context;
         this.itemList = new ArrayList<>();
@@ -23,7 +25,10 @@ class BookListItemAdapter extends RecyclerView.Adapter<BookListItemView> impleme
 
     @Override
     public BookListItemView onCreateViewHolder(ViewGroup parent, int viewType) {
-        return BookListItemView.newInstance(parent.getContext(), parent);
+        mViewMVC = BookListItemView.newInstance(parent.getContext(), parent);
+        mViewMVC.setListener(this);
+
+        return mViewMVC;
     }
 
     @Override
