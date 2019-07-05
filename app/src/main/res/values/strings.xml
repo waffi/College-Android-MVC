@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">Android MVC Structure</string>
-    <string name="txt_book_address_heading">From:</string>
-    <string name="txt_book_date_heading">Date:</string>
-    <string name="btn_mark_read_text">Mark as read</string>
 </resources>
