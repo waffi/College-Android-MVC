@@ -29,6 +29,7 @@ dependencies {
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.picasso:picasso:2.3.0'
 
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion", {
