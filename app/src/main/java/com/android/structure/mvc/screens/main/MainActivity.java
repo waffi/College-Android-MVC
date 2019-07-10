@@ -29,10 +29,15 @@ public class MainActivity extends AppCompatActivity implements MainView.MainView
     @Override
     public void onButtonCaseClicked() {
 
+        EditText txt_query = (EditText)findViewById(R.id.txt_title);
         EditText txt_limit = (EditText)findViewById(R.id.txt_limit);
 
+        String title = txt_query.getText().toString().replace(' ','+');
+        int limit = txt_limit.getText().toString().equals("") ? 10 : Integer.parseInt(txt_limit.getText().toString());
+
         Intent intent = new Intent(this.getApplicationContext(), BookListActivity.class);
-        intent.putExtra("limit", Integer.parseInt(txt_limit.getText().toString()));
+        intent.putExtra("title", title);
+        intent.putExtra("limit", limit);
 
         this.startActivity(intent);
     }

@@ -15,10 +15,10 @@ import retrofit2.Response;
 public class BookDatasource implements BookDatasourceInterface {
 
     @Override
-    public void getBookList(final DataCallback<List<Book>> callback, int limit) {
+    public void getBookList(final DataCallback<List<Book>> callback, String title, int limit) {
         DataService service = ApiClientInstance.getRetrofitInstance().create(DataService.class);
 
-        Call<Search> call = service.getItems(limit);
+        Call<Search> call = service.getItems(title, limit);
         call.enqueue(new Callback<Search>() {
             @Override
             public void onResponse(Call<Search> call, Response<Search> response) {

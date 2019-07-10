@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 public interface DataService {
 
     @GET("/v2/items.dc.json")
-    Call<Search> getItems(@Query("limit") int limit);
+    Call<Search> getItems(@Query("title") String title, @Query("limit") int limit);
 
     @GET("/v2/collections.json")
     Call<List<Collection>> getCollections();
