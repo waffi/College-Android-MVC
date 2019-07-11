@@ -79,9 +79,11 @@ public class MainActivity extends AppCompatActivity implements MainView.MainView
 
             arraySpinner.add("Select collection");
             for (Collection collection : collectionList) {
-                arraySpinner.add(collection.setName);
+                if (collection.setName.matches("[a-zA-Z0-9\\s]+")){
+                    arraySpinner.add(collection.setName);
+                }
             }
-            ;
+
             ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arraySpinner);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

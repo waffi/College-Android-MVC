@@ -23,6 +23,6 @@ public interface DataService {
     @GET("/v2/items.dc.json")
     Call<Search> getItems2(@Query("title") String title, @Query("setName") String collection, @Query("limit") int limit);
 
-    @GET("/v2/collections.json")
+    @GET("/v2/collections.json?limit=100")
     Call<List<Collection>> getCollections();
 }

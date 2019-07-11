@@ -55,7 +55,14 @@ class BookListItemView extends RecyclerView.ViewHolder implements BookListItemVi
         try {
             this.bookNameTextView.setText(item.title.toString());
             this.bookDescriptionTextView.setText(item.description.toString());
-            Picasso.with(context).load(((List<String>) item.identifier).get(0)).into(this.bookIdentifierImageView);
+
+            for (String identifier: (List<String>) item.identifier) {
+                if (identifier.contains("width") && identifier.contains("height"))  {
+                    Picasso.with(context).load(identifier).into(this.bookIdentifierImageView);
+                    break;
+                }
+            }
+
         }
         catch (Exception e){
 
