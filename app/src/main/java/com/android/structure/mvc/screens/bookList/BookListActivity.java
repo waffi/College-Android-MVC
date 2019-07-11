@@ -52,6 +52,7 @@ public class BookListActivity extends AppCompatActivity implements BookListView.
 
         this.loadData(
                 getIntent().getStringExtra("title"),
+                getIntent().getStringExtra("collection"),
                 getIntent().getIntExtra("limit",10));
     }
 
@@ -71,11 +72,11 @@ public class BookListActivity extends AppCompatActivity implements BookListView.
     }
 
     @Override
-    public void loadData(String title, int limit) {
+    public void loadData(String title, String collection, int limit) {
         this.setProgressBarVisible(true);
         this.setRecyclerViewVisible(false);
 
-        this.bookDatasource.getBookList(new GetBookListDataCallback(this), title, limit);
+        this.bookDatasource.getBookList(new GetBookListDataCallback(this), title, collection, limit);
     }
 
     private void onGetBookListSucceeded(List<Book> bookList) {

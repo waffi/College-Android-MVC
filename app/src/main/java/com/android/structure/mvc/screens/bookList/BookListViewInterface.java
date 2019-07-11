@@ -25,7 +25,7 @@ public interface BookListViewInterface extends BaseViewInterface {
 
         void setRecyclerViewVisible(boolean visible);
 
-        void loadData(String title, int limit);
+        void loadData(String title, String collection, int limit);
     }
 
     /**

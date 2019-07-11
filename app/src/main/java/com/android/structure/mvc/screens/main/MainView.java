@@ -17,7 +17,6 @@ public class MainView implements MainViewInterface {
     private View mRootView;
     private MainViewListener mListener;
 
-    private EditText mTxtLimit;
     private Button mBtmLimit;
 
     public MainView(Context context, ViewGroup container) {
@@ -36,8 +35,7 @@ public class MainView implements MainViewInterface {
     }
 
     private void initialize() {
-        mTxtLimit = (EditText) mRootView.findViewById(R.id.txt_limit);
-        mBtmLimit = (Button) mRootView.findViewById(R.id.btn_limit);
+        mBtmLimit = (Button) mRootView.findViewById(R.id.btn_search);
     }
 
 

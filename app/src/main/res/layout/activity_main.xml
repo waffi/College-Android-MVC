@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.android.structure.mvc.screens.main.MainActivity">
+    tools:context="com.android.structure.mvp.screens.main.MainActivity">
 
     <EditText
         android:id="@+id/txt_title"
@@ -20,6 +20,11 @@
         android:hint="title"
         android:inputType="text"
         android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/spinner_collection"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
     <EditText
         android:id="@+id/txt_limit"
@@ -31,8 +36,8 @@
         android:textAlignment="center" />
 
     <Button
-        android:id="@+id/btn_limit"
+        android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get by limit" />
+        android:text="@android:string/search_go" />
 </LinearLayout>
